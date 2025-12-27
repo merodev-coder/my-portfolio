@@ -51,7 +51,7 @@ const About = () => {
                                 showAtmosphere
                                 showGraticules
                                 globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
-                                bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.jpg"
+                                
 
                             />
                         </div>
