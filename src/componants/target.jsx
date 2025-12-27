@@ -1,14 +1,22 @@
-import { useGLTF } from "@react-three/drei";
-import { useRef } from "react";
+import { useGLTF } from '@react-three/drei'
+import { Float } from '@react-three/drei'
 
 const Target = (props) => {
-    const targetRef = useRef();
-    const { scene } = useGLTF("https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/target-stand/model.gltf");
+    const { nodes, materials } = useGLTF('/models/figma.glb')
     return (
-        <mesh {...props} ref={targetRef}>
-            <primitive object={scene} />
-        </mesh>
+        <Float floatIntensity={1}>
+            <group position={[-6, 8, 0]} scale={1.5} {...props}>
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.figma_Texture_0.geometry}
+                    material={materials.Texture}
+                />
+            </group>
+        </Float>
     )
 }
+
+useGLTF.preload('/models/figma.glb')
 
 export default Target

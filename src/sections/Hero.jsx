@@ -5,7 +5,12 @@ import HackerRoom from "../componants/HackerRoom"
 import CanvasLoader from "../componants/CanvasLoader"
 import { useMediaQuery } from "react-responsive"
 import { calculateSizes } from "../constans/index.js"
+import ReactLogo from "../componants/ReactLogo.jsx"
 import Target from "../componants/target.jsx"
+import Cube from "../componants/Cube.jsx"
+import Rings from "../componants/Rings.jsx"
+import HeroCamera from "../componants/HeroCamera.jsx"
+import Button from "../componants/button.jsx"
 
 
 const Hero = () => {
@@ -14,7 +19,7 @@ const Hero = () => {
     const isMobile = useMediaQuery({ maxWidth: 768 });
     const isTablet = useMediaQuery({ minWidth: 769, maxWidth: 1024 });
 
-    const sizes = calculateSizes(isSmall, isMobile, isTablet);
+    const size = calculateSizes(isSmall, isMobile, isTablet);
 
     return (
         <section className="min-h-screen w-full flex flex-col relative">
@@ -29,14 +34,20 @@ const Hero = () => {
                 <Canvas className="w-full h-full">
                     <Suspense fallback={<CanvasLoader />}>
                         <PerspectiveCamera makeDefault position={[0, 0, 20]} />
-                        <HackerRoom
-                            position={sizes.deskPosition}
-                            rotation={[0, -Math.PI, 0]}
-                            scale={sizes.deskScale}
-                        />
+                        <HeroCamera isMobile={isMobile}>
+                            <HackerRoom
+                                position={size.deskPosition}
+                                rotation={[0, -Math.PI, 0]}
+                                scale={size.deskScale}
+                            />
+                        </HeroCamera>
 
                         <group>
-                            <Target position={sizes.targetPosition} />
+                            <Target position={size.targetPosition} />
+                            <ReactLogo position={size.reactLogoPosition} />
+                            <Cube position={size.cubePosition} />
+                            <Rings position={size.ringPosition} />
+
                         </group>
 
 
@@ -45,6 +56,13 @@ const Hero = () => {
                     </Suspense>
 
                 </Canvas>
+            </div>
+
+
+            <div className="absolute bottom-7 left-0 right-0 w-full z-10 c-space">
+                <a href="#contact" className="w-fit">
+                    <Button name="Contact Me" isBeam containerClass="sm:w-fit w-full sm:min-w-96" />
+                </a>
             </div>
         </section>
     )
