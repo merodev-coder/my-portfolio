@@ -6,7 +6,7 @@ const Rings = ({ ...props }) => {
     const { nodes, materials } = useGLTF('/models/logotipos_3d_-_aprenda_programar.glb')
     return (
         <Float dispose={null}>
-            <group  {...props} position={[-12, 5, 0]}>
+            <group  {...props} position={[-12, 4, 0]} rotation={[0, -Math.PI, 0]}>
                 <mesh
 
                     geometry={nodes.Object_22.geometry}

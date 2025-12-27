@@ -5,7 +5,7 @@ const Target = (props) => {
     const { nodes, materials } = useGLTF('/models/figma.glb')
     return (
         <Float floatIntensity={1}>
-            <group position={[-6, 8, 0]} scale={1.5} {...props}>
+            <group position={[-6, 12, 0]} scale={1.5} {...props}>
                 <mesh
                     castShadow
                     receiveShadow
